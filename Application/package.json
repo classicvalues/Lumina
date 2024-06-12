@@ -21,7 +21,7 @@
     "grunt-sync": "0.8.2",
     "include-all": "4.0.3",
     "rc": "1.2.8",
-    "sails": "1.5.6",
+    "sails": "1.5.7",
     "sails-disk": "2.1.2",
     "natives": "1.1.6"
   },
