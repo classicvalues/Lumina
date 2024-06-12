@@ -5,7 +5,7 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
-    "applicationinsights": "2.7.0",
+    "applicationinsights": "3.1.0",
     "ejs": "3.1.9",
     "grunt": "1.6.1",
     "grunt-contrib-clean": "2.0.1",
