@@ -49,7 +49,7 @@ jobs:
           echo "::add-mask::`az acr credential show -n ${{ env.REGISTRYNAME }} --query passwords[0].value`"
 
     - name: ACR authentication
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v2
       with:
         login-server: ${{ env.REGISTRYNAME }}.azurecr.io
         username: ${{ steps.acrCredentials.outputs.acr_username }}
