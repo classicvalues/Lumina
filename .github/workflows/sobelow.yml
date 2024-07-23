@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3 
+      - uses: actions/checkout@v4 
       - id: run-action
         uses: sobelow/action@85a7af55ecfe77cbecbae704398af72df079165e
       - name: Upload report

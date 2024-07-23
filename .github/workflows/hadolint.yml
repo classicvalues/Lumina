@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Run hadolint
         uses: hadolint/hadolint-action@d292784f8f3eacda47060b259a580467b0ba410c
