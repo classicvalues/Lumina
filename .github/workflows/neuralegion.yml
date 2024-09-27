@@ -159,7 +159,7 @@ on:
 
 jobs:
   neuralegion_scan:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-24.04
     name: A job to run a Nexploit scan
     steps:
       - uses: actions/checkout@v3
