@@ -31,7 +31,7 @@ jobs:
       security-events: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Dependency scan
         uses: clj-holmes/clj-watson-action@b4c3623c4d603932e60e6012a3a1db7bc60058c2
