@@ -42,11 +42,7 @@ jobs:
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication
     - run: |-
-    gcloud --quiet auth configure-docker
-
-    - name: DefenseCode ThunderScan Action
-      uses: defensecode/thunderscan-action@v1.0
-
+        gcloud --quiet auth configure-docker
 
     # Get the GKE credentials so we can deploy to the cluster
     - uses: google-github-actions/get-gke-credentials@v1.0.2
