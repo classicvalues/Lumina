@@ -54,7 +54,7 @@ jobs:
     
     # 1.1 Login to ACR   
     - name: Login to ACR with the AccessKey pair
-      uses: aliyun/acr-login@v1
+      uses: aliyun/acr-login@v2.0.2
       with:
         region-id: "${{ env.REGION_ID }}"
         access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
@@ -79,7 +79,7 @@ jobs:
     # 2.1 (Optional) Login to ACR EE          
     - uses: actions/checkout@v3
     - name: Login to ACR EE with the AccessKey pair
-      uses: aliyun/acr-login@v1
+      uses: aliyun/acr-login@v2.0.2
       with:
         login-server: "https://${{ env.ACR_EE_REGISTRY }}"
         region-id: "${{ env.REGION_ID }}"
