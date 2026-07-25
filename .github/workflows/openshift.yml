@@ -155,7 +155,7 @@ jobs:
 
     # https://github.com/redhat-actions/oc-login#readme
     - name: Log in to OpenShift
-      uses: redhat-actions/oc-login@v1
+      uses: redhat-actions/oc-login@v2
       with:
         openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
         openshift_token: ${{ env.OPENSHIFT_TOKEN }}
