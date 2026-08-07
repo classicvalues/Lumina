@@ -65,11 +65,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.7.0
 
       - name: Google Auth
         id: auth
-        uses: 'google-github-actions/auth@v1'
+        uses: 'google-github-actions/auth@v1.3.0'
         with:
           token_format: 'access_token'
           workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
@@ -87,7 +87,7 @@ jobs:
       # Authenticate Docker to Google Cloud Artifact Registry
       - name: Docker Auth
         id: docker-auth
-        uses: 'docker/login-action@v2'
+        uses: 'docker/login-action@v2.2.0'
         with:
           username: 'oauth2accesstoken'
           password: '${{ steps.auth.outputs.access_token }}'
@@ -102,7 +102,7 @@ jobs:
 
       - name: Deploy to Cloud Run
         id: deploy
-        uses: google-github-actions/deploy-cloudrun@v1
+        uses: google-github-actions/deploy-cloudrun@v1.0.2
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
