@@ -140,7 +140,7 @@ jobs:
 
     # Runs Helm to create manifest files
     - name: Bake deployment
-      uses: azure/k8s-bake@v2.4
+      uses: azure/k8s-bake@v4.1.1
       with:
         renderEngine: 'helm'
         helmChart: ${{ env.CHART_PATH }}
