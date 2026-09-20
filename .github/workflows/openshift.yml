@@ -71,7 +71,7 @@ jobs:
 
     steps:
     - name: Check for required secrets
-      uses: actions/github-script@v6
+      uses: actions/github-script@v6.4.1
       with:
         script: |
           const secrets = {
@@ -109,7 +109,7 @@ jobs:
           }
 
     - name: Check out repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3.7.0
 
     - name: Determine app name
       if: env.APP_NAME == ''
@@ -124,7 +124,7 @@ jobs:
     # https://github.com/redhat-actions/buildah-build#readme
     - name: Build from Dockerfile
       id: build-image
-      uses: redhat-actions/buildah-build@v2
+      uses: redhat-actions/buildah-build@v2.6.2
       with:
         image: ${{ env.APP_NAME }}
         tags: ${{ env.IMAGE_TAGS }}
@@ -138,7 +138,7 @@ jobs:
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to registry
       id: push-image
-      uses: redhat-actions/push-to-registry@v2
+      uses: redhat-actions/push-to-registry@v2.7.1
       with:
         image: ${{ steps.build-image.outputs.image }}
         tags: ${{ steps.build-image.outputs.tags }}
@@ -149,13 +149,13 @@ jobs:
     # The path the image was pushed to is now stored in ${{ steps.push-image.outputs.registry-path }}
 
     - name: Install oc
-      uses: redhat-actions/openshift-tools-installer@v1
+      uses: redhat-actions/openshift-tools-installer@v1.13.1
       with:
         oc: 4
 
     # https://github.com/redhat-actions/oc-login#readme
     - name: Log in to OpenShift
-      uses: redhat-actions/oc-login@v1
+      uses: redhat-actions/oc-login@v1.1.2
       with:
         openshift_server_url: ${{ env.OPENSHIFT_SERVER }}
         openshift_token: ${{ env.OPENSHIFT_TOKEN }}
@@ -166,7 +166,7 @@ jobs:
     # https://github.com/redhat-actions/oc-new-app#readme
     - name: Create and expose app
       id: deploy-and-expose
-      uses: redhat-actions/oc-new-app@v1
+      uses: redhat-actions/oc-new-app@v1.2.3
       with:
         app_name: ${{ env.APP_NAME }}
         image: ${{ steps.push-image.outputs.registry-path }}
