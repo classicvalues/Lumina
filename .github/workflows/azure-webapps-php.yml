@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3.7.0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@9c77701ae57b0c47f6732beebfbdec76e4e5c90a
@@ -58,7 +58,7 @@ jobs:
           echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Set up dependency caching for faster installs
-        uses: actions/cache@v3
+        uses: actions/cache@v3.5.0
         if: steps.check_files.outputs.files_exists == 'true'
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
@@ -71,7 +71,7 @@ jobs:
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.2.2
         with:
           name: php-app
           path: .
@@ -87,13 +87,13 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v3.1.0
         with:
           name: php-app
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v2.2.19
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
