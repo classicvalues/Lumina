@@ -28,11 +28,11 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Azure authentication
-      uses: azure/login@v1
+      uses: azure/login@v1.6.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/arm-deploy@v1
+    - uses: azure/arm-deploy@v1.0.9
       id: createAcr
       with:
         subscriptionId: ${{ env.SUBSCRIPTIONID }}
@@ -49,7 +49,7 @@ jobs:
           echo "::add-mask::`az acr credential show -n ${{ env.REGISTRYNAME }} --query passwords[0].value`"
 
     - name: ACR authentication
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v1.0.1
       with:
         login-server: ${{ env.REGISTRYNAME }}.azurecr.io
         username: ${{ steps.acrCredentials.outputs.acr_username }}
@@ -69,11 +69,11 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Azure authentication
-      uses: azure/login@v1
+      uses: azure/login@v1.6.1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: azure/arm-deploy@v1
+    - uses: azure/arm-deploy@v1.0.9
       id: deploy
       with:
         subscriptionId: ${{ env.SUBSCRIPTIONID }}
@@ -89,7 +89,7 @@ jobs:
            echo "::add-mask::`az acr credential show -n ${{ env.REGISTRYNAME }} --query passwords[0].value | xargs`" 
 
     - name: 'Deploy to Azure Web App for Container'
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v2.2.19
       with: 
         app-name: ${{ env.APPNAME }} 
         images: ${{ env.REGISTRYNAME }}.azurecr.io/${{ env.IMAGENAME }}:${{ github.sha }}
@@ -100,10 +100,10 @@ jobs:
     runs-on: windows-latest
     needs: Deploy
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.7.0
 
     - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v3.9.1
       with:
         node-version: ${{ env.NODE_VERSION }}
 
